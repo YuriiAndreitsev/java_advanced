@@ -13,10 +13,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
-public class FXMLController implements Initializable{
+public class FXMLController implements Initializable {
 
 	PudgeService pudgeService = new PudgeService();
+
+	@FXML
+	private ImageView enImg;
+
+	@FXML
+	private ImageView deImg;
+
+	@FXML
+	private ImageView frImg;
 
 	@FXML
 	private TextField one;
@@ -59,7 +69,7 @@ public class FXMLController implements Initializable{
 
 	@FXML
 	void handleButtonAction(ActionEvent event) {
-		
+
 	}
 
 	@FXML
@@ -80,6 +90,7 @@ public class FXMLController implements Initializable{
 		thee.setText(bundle.getString("fleshHeap"));
 		four.setText(bundle.getString("dismember"));
 		enableButtons();
+		setImg(language);
 		p = new Pudge(one.getText(), two.getText(), thee.getText(), four.getText());
 
 	}
@@ -96,6 +107,7 @@ public class FXMLController implements Initializable{
 		thee.setText(bundle.getString("fleshHeap"));
 		four.setText(bundle.getString("dismember"));
 		enableButtons();
+		setImg(language);
 		p = new Pudge(one.getText(), two.getText(), thee.getText(), four.getText());
 	}
 
@@ -111,7 +123,30 @@ public class FXMLController implements Initializable{
 		thee.setText(bundle.getString("fleshHeap"));
 		four.setText(bundle.getString("dismember"));
 		enableButtons();
+
+		setImg(language);
+
 		p = new Pudge(one.getText(), two.getText(), thee.getText(), four.getText());
+	}
+
+	public void setImg(String lang) {
+		switch (lang) {
+		case "fr":
+			enImg.setVisible(false);
+			deImg.setVisible(false);
+			frImg.setVisible(true);
+			break;
+		case "en":
+			enImg.setVisible(true);
+			deImg.setVisible(false);
+			frImg.setVisible(false);
+			break;
+		case "de":
+			enImg.setVisible(false);
+			deImg.setVisible(true);
+			frImg.setVisible(false);
+			break;
+		}
 	}
 
 	@FXML
@@ -124,10 +159,8 @@ public class FXMLController implements Initializable{
 	void savePudge(ActionEvent event) {
 		pudgeService.savePudge(p, "pudge.bin");
 	}
-	
-		
-	public void enableButtons()
-	{
+
+	public void enableButtons() {
 		saveButton.setVisible(true);
 		loadButton.setVisible(true);
 	}
@@ -136,6 +169,10 @@ public class FXMLController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		saveButton.setVisible(false);
 		loadButton.setVisible(false);
+
+		enImg.setVisible(false);
+		frImg.setVisible(false);
+		deImg.setVisible(false);
 	}
 
 }
