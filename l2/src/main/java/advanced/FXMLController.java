@@ -19,12 +19,6 @@ public class FXMLController implements Initializable{
 	PudgeService pudgeService = new PudgeService();
 
 	@FXML
-	private Button button;
-
-	@FXML
-	private Label label;
-
-	@FXML
 	private TextField one;
 
 	@FXML
@@ -122,8 +116,8 @@ public class FXMLController implements Initializable{
 
 	@FXML
 	void loadPudge(ActionEvent event) {
-		pudgeService.loadPudge("pudge.bin");
-		pudgeInfo.setText(p.toString());
+		p = pudgeService.loadPudge("pudge.bin");
+		pudgeInfo.setText("Loaded State: " + p.toString());
 	}
 
 	@FXML
