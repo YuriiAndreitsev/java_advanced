@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="804.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.FXMLController2">
+   <children>
+      <TextField fx:id="path" layoutX="31.0" layoutY="26.0" onKeyPressed="#onKeyPressed" prefHeight="31.0" prefWidth="438.0" promptText="Enter Destination" />
+      <Button fx:id="showButton" layoutX="487.0" layoutY="26.0" mnemonicParsing="false" onAction="#showFiles" text="select" />
+      <TextArea fx:id="edit" layoutX="25.0" layoutY="525.0" prefHeight="205.0" prefWidth="514.0" />
+      <Label fx:id="fileName" layoutX="25.0" layoutY="484.0" prefHeight="21.0" prefWidth="163.0" text="Choose File" />
+      <ListView fx:id="list" layoutX="31.0" layoutY="71.0" onMouseClicked="#selectElement" prefHeight="339.0" prefWidth="514.0" />
+      <ComboBox fx:id="actionBox" layoutX="296.0" layoutY="746.0" maxHeight="35.0" maxWidth="110.0" onAction="#fileAction" prefHeight="31.0" prefWidth="101.0" promptText="action" />
+      <TextField fx:id="pathForActionBox" layoutX="382.0" layoutY="435.0" prefHeight="31.0" prefWidth="163.0" promptText="File Path" />
+      <TextField fx:id="newFileName" layoutX="382.0" layoutY="479.0" prefHeight="31.0" prefWidth="163.0" promptText="New File &quot;name.txt&quot;" />
+      <Label layoutX="126.0" layoutY="751.0" text="Load/Save/Copy/SaveAs" />
+      <Label layoutX="288.0" layoutY="440.0" text="Copy/SaveAs:" />
+      <Button fx:id="actionButtonPerform" layoutX="413.0" layoutY="746.0" mnemonicParsing="false" onAction="#performSelectedAction" text="ChooseAction" />
+   </children>
+</AnchorPane>

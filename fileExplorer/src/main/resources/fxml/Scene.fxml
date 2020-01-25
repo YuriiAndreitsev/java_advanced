@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.FXMLController">
+   <children>
+      <TextField fx:id="path" layoutX="50.0" layoutY="26.0" prefHeight="31.0" prefWidth="438.0" promptText="Enter Destination" />
+      <TableView fx:id="table" layoutX="147.0" layoutY="88.0" onMouseClicked="#selectRow" prefHeight="492.0" prefWidth="724.0">
+         <columns>
+            <TableColumn fx:id="name" prefWidth="610.0" text="name" />
+         </columns>
+      </TableView>
+      <Button fx:id="showButton" layoutX="500.0" layoutY="26.0" mnemonicParsing="false" onAction="#showFiles" text="Button" />
+      <TextArea fx:id="edit" layoutX="147.0" layoutY="648.0" prefHeight="200.0" prefWidth="724.0" />
+      <Label layoutX="147.0" layoutY="611.0" prefHeight="21.0" prefWidth="143.0" text="File to Edit" />
+   </children>
+</AnchorPane>
