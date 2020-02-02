@@ -71,24 +71,25 @@ public class ExplorerService {
 	public List<File> showFiles(String path) {
 		Scanner in = new Scanner(System.in);
 		File file = new File(path);
+
 		List<File> explorer = new ArrayList<File>();
 
 		if (file.toString().endsWith("..")) {
 			file = new File(file.getParent());
-
 			String f = file.getParent();
+
 			if (f == null) {
 				f = file.getPath();
 			}
-			int length = 0;
-			for (int i = 0; i < f.length(); i++) {
-				String s = f.substring(f.length() - i);
-				if (s.startsWith("\\")) {
-					length = s.length();
-					file.toString().substring(f.length() - length, f.length());
-				}
-				break;
-			}
+//			int length = 0;
+//			for (int i = 0; i < f.length(); i++) {
+//				String s = f.substring(f.length() - i);
+//				if (s.startsWith("\\")) {
+//					length = s.length();
+//					file.toString().substring(f.length() - length, f.length());
+//				}
+//				break;
+//			}
 		}
 		if (file.getParent() != null) {
 			explorer.add(new File(file.getParent() + "\\.."));
