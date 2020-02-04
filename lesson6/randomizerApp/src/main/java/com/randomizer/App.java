@@ -5,9 +5,15 @@ package com.randomizer;
  *
  */
 public class App extends Thread {
-	public int getFiveRandomIntegers() {
+
+//		System.out.println(sum + " - is sum");
+
+	int sum = 0;
+	
+
+	public void run() {
 		int step = 0;
-		int sum = 0;
+		
 		do {
 			try {
 				Thread.sleep(500);
@@ -21,12 +27,17 @@ public class App extends Thread {
 			}
 
 		} while (step < 5);
-//		System.out.println(sum + " - is sum");
-		return sum;
-
 	}
-	
-//	public static void main(String[] args) {
-//		new App().getFiveRandomIntegers();
-//	}
+
+
+	public int getSum() {
+		return sum;
+	}
+
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+
+
 }

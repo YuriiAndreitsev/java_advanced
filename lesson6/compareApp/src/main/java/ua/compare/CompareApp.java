@@ -14,8 +14,14 @@ public class CompareApp
         
         App randomizer2 = new App();
         
-        int firstRandomizerSum = randomizer1.getFiveRandomIntegers();
-        int secondRandomizerSum = randomizer2.getFiveRandomIntegers();
+       
+        randomizer1.start();
+        randomizer2.start();
+        while (randomizer1.isAlive()&&randomizer2.isAlive()) {
+        	
+        }
+        int firstRandomizerSum = randomizer1.getSum();        
+        int secondRandomizerSum = randomizer2.getSum();
         
         System.out.println( firstRandomizerSum + " ; "+ secondRandomizerSum);
         if (firstRandomizerSum > secondRandomizerSum) {
