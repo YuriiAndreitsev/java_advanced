@@ -1,3 +1,4 @@
+package concurrency;
 public class Worker extends Thread {
 	public static final int AMOUNT_OF_GOLD = 3;
 	private int totalGoldMined = 0;

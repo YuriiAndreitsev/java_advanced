@@ -1,3 +1,4 @@
+package concurrency;
 public class GoldMine {
 
     private volatile int gold = 1000;
