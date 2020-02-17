@@ -2,7 +2,16 @@ package ua.itea.lesson8;
 
 public class Cart {
 	private volatile int gold;
-	public boolean mineIsOutOfGold = false;
+	private boolean noGoldinMine = false;
+
+	public boolean isNoGoldinMine() {
+		return noGoldinMine;
+	}
+
+	public void setNoGoldinMine(boolean noGoldinMine) {
+		this.noGoldinMine = noGoldinMine;
+	}
+
 	public synchronized int getGold() {
 		return gold;
 	}
@@ -18,8 +27,12 @@ public class Cart {
 
 	public Cart() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cart [gold=" + gold + "]" + isNoGoldinMine()+ " gold in mine";
+	}
+
 }

@@ -6,13 +6,16 @@ import java.util.concurrent.TimeUnit;
 public class Transporter implements Runnable {
 
 	public static final int TRANSPORTATION_TIME_MS = 2000;
-	private Cart cart = new Cart();
+	private Cart cart;
 	private Exchanger<Cart> loaderTransporter;
 	private Exchanger<Cart> transporterUnloader;
-
+	private boolean stop = false;
+	
+	private void stopThread() {
+		this.stop = true;
+	}
 
 	public Transporter(Cart cart, Exchanger<Cart> receiveCartFromLoader, Exchanger<Cart> giveCartToUnloader) {
-		super();
 		this.cart = cart;
 		this.loaderTransporter = receiveCartFromLoader;
 		this.transporterUnloader = giveCartToUnloader;
@@ -22,32 +25,30 @@ public class Transporter implements Runnable {
 
 	public void run() {
 
-		while (true) {
+		while (!stop) {
+			
 			try {
-				TimeUnit.MILLISECONDS.sleep(TRANSPORTATION_TIME_MS);
+//				TimeUnit.MILLISECONDS.sleep(TRANSPORTATION_TIME_MS);
 				if (switchDestination) {
-					switchDestination = false;
-
+					cart = null;
+					cart = loaderTransporter.exchange(cart);
+					if (cart.isNoGoldinMine()) {
+						stopThread();
+					}
 					System.out.println("TRANSPORTER : Received cart from Loader, giving Cart to UnLoader");
-					cart = loaderTransporter.exchange(cart);
-
-					System.out.println("TRANSPORTER : Gave cart to Unloader");
 					cart = transporterUnloader.exchange(cart);
-
+					System.out.println("TRANSPORTER : Gave cart to Unloader");					
+					switchDestination = false;
 				} else {
-
 					switchDestination = true;
-					System.out.println("TRANSPORTER : Gave cart to Loader");
-					cart = loaderTransporter.exchange(cart);
-
+					System.out.println("Returning cart to Loader");
+					loaderTransporter.exchange(cart);
 				}
-
-			} catch (
-
-			InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("TRANSPORTER FINISHED");
 	}
 
 }

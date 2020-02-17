@@ -1,5 +1,6 @@
 package ua.itea.lesson8;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.TimeUnit;
 
@@ -31,25 +32,21 @@ public class Unloader implements Runnable {
 	}
 
 	public void run() {
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		while (true) {
-			try {
-//				cart.setGold(0);
-				System.out.println("UNLOADER : exchanging with Transporter");
-				cart = transporterUnloader.exchange(cart);
-				System.out.println("UNLOADER : put gold in warehouse");
-				warehouse.setGold(warehouse.getGold() + cart.getGold());
-				System.out.println("WAREHOUSE : " + warehouse.getGold() + " gold in Warehouse");
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 
+		while (!cart.isNoGoldinMine()) {			
+				try {
+					cart = transporterUnloader.exchange(new Cart(0));					
+					System.out.println("UNLOADER RECEIVED CART WITH " + cart);
+					System.out.println("UNLOADER : exchanging with Transporter");
+					warehouse.setGold(warehouse.getGold() + cart.getGold());
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("WAREHOUSE : " + warehouse.getGold() + " gold in Warehouse");
+			
+		}
+		System.out.println("UNLOADER FINISHED");
 	}
 
 }
