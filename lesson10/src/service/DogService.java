@@ -50,4 +50,13 @@ public class DogService {
 		}
 		return weakRefDog.get();
 	}
+	
+	public boolean isNumeric(String text) {
+	    try {
+	        int i = Integer.parseInt(text);
+	    } catch (NumberFormatException | NullPointerException nfe) {
+	        return false;
+	    }
+	    return true;
+	}
 }
